@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Bpmtk Modeler for VueJS</title>
+  <link href="./dist/assets/diagram-js.css" rel="stylesheet" type="text/css" >
+  <link href="./dist/assets/bpmn-font/css/bpmn.css" rel="stylesheet" type="text/css" >
+  <link href="./node_modules/diagram-js-minimap/assets/diagram-js-minimap.css" rel="stylesheet" type="text/css" >
+  <!-- app dependency -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!-- dependency for the UMD bundle -->
+  <!-- <script src="./node_modules/bpmn-js/dist/bpmn-modeler.production.min.js"></script> -->
+
+  <!-- vue-bpmn umd distribution -->
+  <script src="./dist/bpmtk-modeler.umd.js"></script>
+
+  <style>
+    html, body, #app {
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .diagram-container {
+      height:  100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="diagram-container">
+      <bpmtk-modeler
+        url="https://localhost:5001/api/deployments/1/bpmn-model/xml"
+        v-on:error="handleError"
+        v-on:shown="handleShown"
+        ref="modeler2"
+      ></bpmtk-modeler>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      components: {
+        BpmtkModeler
+      },
+      methods: {
+        handleError: function(err) {
+          console.error('failed to show diagram', err);
+        },
+        handleShown: function(e) {
+          console.log('diagram shown: ', e);
+
+          var component = this.$refs.modeler2;
+          var modeler = component.modeler;
+          var commandStack = modeler.get('commandStack');
+
+          console.log('The modeler: ', commandStack);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
