@@ -33,6 +33,7 @@
         url="https://localhost:5001/api/deployments/1/bpmn-model/xml"
         v-on:error="handleError"
         v-on:shown="handleShown"
+        v-on:loading="handleLoading"
         ref="modeler2"
       ></bpmtk-modeler>
     </div>
@@ -55,6 +56,9 @@
           var commandStack = modeler.get('commandStack');
 
           console.log('The modeler: ', commandStack);
+        },
+        handleLoading : function() {
+          console.log('loading...')
         }
       }
     });
