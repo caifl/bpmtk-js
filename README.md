@@ -1,6 +1,6 @@
-# vue-bpmn
+# bpmtk-js
 
-Use [bpmn-js](https://github.com/bpmn-io/bpmn-js) to display BPMN 2.0 diagrams in a [Vue.js](https://vuejs.org) application.
+Use [bpmtk-js](https://github.com/caifl/bpmtk-js) to display BPMN 2.0 diagrams in a [Vue.js](https://vuejs.org) application.
 
 
 ## Usage
